@@ -1,0 +1,118 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    /* Override Tailwind v4 blue & sky accent scales to #029D97 emerald-teal palette */
+    --color-blue-400: #2bd4cd;
+    --color-blue-500: #029D97;
+    --color-blue-600: #029D97;
+    --color-blue-700: #027e79;
+    --color-blue-950: #022c2a;
+    --color-sky-300: #6ce5df;
+    --color-sky-400: #1ec9c2;
+    --color-sky-500: #029D97;
+    --color-sky-600: #02837e;
+    --color-indigo-400: #2bd4cd;
+    --color-indigo-500: #029D97;
+    --color-indigo-600: #02837e;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+  }
+
+  code, pre, .font-mono {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes slowSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes reverseSlowSpin {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes lightSweep {
+  0% {
+    transform: translateX(-120%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(220%) skewX(-20deg);
+  }
+}
+
+@keyframes dataFlow {
+  0% {
+    stroke-dashoffset: 24;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-slow-spin {
+  animation: slowSpin 38s linear infinite;
+}
+
+.animate-reverse-slow-spin {
+  animation: reverseSlowSpin 46s linear infinite;
+}
+
+.animate-data-flow {
+  animation: dataFlow 1.2s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-slow-spin,
+  .animate-reverse-slow-spin,
+  .animate-data-flow {
+    animation: none !important;
+  }
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #ats-resume-printable,
+  #ats-resume-printable * {
+    visibility: visible;
+  }
+  #ats-resume-printable {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
+}
